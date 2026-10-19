@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أعشاب بلادي</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Blaka&family=Tajawal:wght@400;500;700&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f7f3e8;--card:#fffdf6;--ink:#1f2a1c;--mute:#6b7560;--green:#2f6b3a;--green2:#1f4d29;--gold:#c8962e;--line:#e3dcc6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a12;--card:#1d2619;--ink:#eef2e6;--mute:#a3ad98;--green:#5fae6d;--green2:#8fd09b;--gold:#e0b04e;--line:#2f3a2a}}
+:root[data-theme="dark"]{--bg:#141a12;--card:#1d2619;--ink:#eef2e6;--mute:#a3ad98;--green:#5fae6d;--green2:#8fd09b;--gold:#e0b04e;--line:#2f3a2a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Tajawal,Tahoma,Arial,sans-serif;line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:#1f4d29;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 16px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#1f4d29;z-index:10}
+header h1{font-family:Blaka,Tajawal,sans-serif;font-weight:400;font-size:1.7rem;line-height:1.2;margin:0;color:#f3d98b;letter-spacing:0}
+header h1 .lf{font-size:1.4rem}
+.cartbtn{background:var(--gold);color:#1f2a1c;border:0;border-radius:20px;padding:6px 14px;font:inherit;font-weight:800;cursor:pointer}
+.hero{text-align:center;padding:36px 16px;background:linear-gradient(160deg,var(--green),var(--green2));color:#fff;
+background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 12px,transparent 12px 24px),linear-gradient(160deg,var(--green),var(--green2))}
+.hero h2{font-family:Blaka,Tajawal,sans-serif;font-weight:400;margin:0 0 10px;font-size:clamp(1.8rem,6vw,2.8rem);line-height:1.45;color:#f6e3a6;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+.hero h2::after{content:"❖";display:block;font-family:Tajawal,sans-serif;font-size:1rem;color:var(--gold);margin-top:2px}
+.hero p{margin:0 0 18px;opacity:.92;font-size:1.05rem;font-weight:500}
+.btn{background:var(--gold);color:#1f2a1c;border:0;border-radius:10px;padding:10px 18px;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}
+main{max-width:1000px;margin:0 auto;padding:20px 14px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px;color:var(--mute);font-size:.9rem}
+.badges span{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:4px 12px}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:14px}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:5px 14px;font:inherit;cursor:pointer;white-space:nowrap}
+.tab.on{background:var(--green);color:#fff;border-color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.pic{height:120px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:Blaka,Tajawal,sans-serif;font-size:1.6rem;color:#f3e6bd;text-align:center;padding:6px}
+.card h3{font-family:Blaka,Tajawal,sans-serif;font-weight:400;margin:0;font-size:1.2rem;line-height:1.6}.card small{color:var(--mute)}
+h2,h3{font-family:Blaka,Tajawal,sans-serif;font-weight:400}
+.sec{font-size:1.9rem;margin:6px 0 12px;color:var(--green2);line-height:1.5}
+.btn,.cartbtn,.add,.tab,.price,.total{font-family:Tajawal,Tahoma,sans-serif;font-weight:700}
+.btn{font-size:1.05rem}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+.price{font-weight:800;color:var(--green)}
+select,input,textarea{width:100%;font:inherit;padding:9px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.card select{width:auto}
+.add{background:var(--green);color:#fff;border:0;border-radius:8px;padding:7px 12px;font:inherit;cursor:pointer}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:20}
+#ov.show{display:block}
+#panel{position:absolute;top:0;bottom:0;left:0;width:min(420px,100%);background:var(--card);padding:16px;overflow-y:auto;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.item{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:8px 0;border-bottom:1px solid var(--line)}
+.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+label{display:block;margin:10px 0 3px;font-weight:600;font-size:.9rem}
+.total{font-size:1.1rem;font-weight:800;margin:12px 0}
+footer{text-align:center;background:#1f4d29;color:#d9e6cf;padding:28px 14px;font-size:.9rem;margin-top:10px}
+header{flex-wrap:wrap}html{scroll-padding-top:calc(105px + env(safe-area-inset-top,0px))}
+#menu{flex-basis:100%;display:flex;gap:22px;overflow-x:auto;white-space:nowrap;margin-top:6px;padding-top:8px;border-top:1px solid rgba(255,255,255,.2)}
+#menu a{color:#fff;text-decoration:none;font-weight:700;padding:2px 0;border-bottom:2px solid transparent;cursor:pointer}
+#menu a:hover,#menu a:focus{border-color:var(--gold);color:#f3d98b}
+.boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.box h3{margin:0 0 4px;font-size:1.3rem;color:var(--green2)}.box p{margin:0;color:var(--mute);font-size:.95rem}
+.about{max-width:1000px;margin:0 auto;padding:10px 14px 24px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px 14px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;padding:10px 0;font-size:1.05rem}
+details p,details li{color:var(--ink);margin:6px 0}
+.dev{direction:ltr;unicode-bidi:isolate;font-weight:700;color:#f3d98b}
+.ovl{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;z-index:30;overflow-y:auto}.ovl.show{display:block}
+.pnl{background:var(--card);max-width:560px;margin:calc(16px + env(safe-area-inset-top,0px)) auto 16px;border-radius:14px;padding:16px;width:calc(100% - 24px)}
+.big{width:100%;max-height:340px;object-fit:cover;border-radius:10px;margin:10px 0;display:block}
+.pic{overflow:hidden;cursor:pointer}.pic img{width:100%;height:100%;object-fit:cover}.pic.big{height:200px;max-height:none}
+.pnl ul{padding-inline-start:20px;margin:8px 0}.pnl hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.hid{display:none!important}.box ul{padding-inline-start:18px;margin:6px 0;color:var(--mute);font-size:.9rem}#menu a.on{border-color:var(--gold);color:#f3d98b}
+.soc{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}.soc a{border:1px solid rgba(255,255,255,.45);color:#fff;border-radius:20px;padding:4px 18px;text-decoration:none}.soc a:hover{background:#f3d98b;color:#1f4d29}
+.fl{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.22)}
+.fl a{color:#fff;text-decoration:none;cursor:pointer;font-weight:500}.fl a:hover{color:#f3d98b}
+</style>
+</head>
+<body>
+<header><h1>أعشاب بلادي</h1><button class="cartbtn" id="open">السلة (<span id="cnt">0</span>)</button>
+<nav id="menu"><a href="#shop" data-view="home" data-cat="الكل">القائمة الرئيسية</a><a href="#packs" data-view="packs">الباقات</a><a href="#herbs-info" data-view="herbs">معلومات عن الأعشاب</a><a href="#about" data-view="about">من نحن</a><a href="#goals" data-view="goals">أهدافنا</a><a href="#contact" data-view="contact">تواصل معنا</a></nav></header>
+<section class="hero"><h2>من أسواقنا وجبالنا إلى باب دارك</h2><p>زعتر وأزير وورد بلدي وغيرها، تختار وتطلب، وتؤدي ثمن الطلبية عند الاستلام.</p><a class="btn" href="#shop">شاهد المنتجات</a></section>
+<main id="shop">
+<h2 class="sec">منتجاتنا</h2>
+<div class="badges"><span>التوصيل إلى جميع مدن المملكة</span><span>الدفع عند الاستلام</span><span>التوصيل مجاني ابتداءً من 200 درهم</span></div>
+<div class="tabs" id="tabs"></div>
+<div class="grid" id="grid"></div>
+</main>
+<section class="about" id="packs"><h2 class="sec">الباقات</h2><p style="color:var(--mute)">باقات جاهزة تجمع عدة منتجات في طلب واحد. تُضاف كل المنتجات إلى السلة بالحجم الأول، ويمكنك تعديل الكميات قبل الإرسال.</p><div class="boxes" id="pklist"></div></section>
+<section class="about" id="goals"><h2 class="sec">أهدافنا</h2>
+<div class="boxes">
+<div class="box"><h3>أعشاب أصيلة</h3><p>توفير الأعشاب والتوابل المغربية المعروفة بجودتها ومصدرها الواضح.</p></div>
+<div class="box"><h3>أسعار واضحة</h3><p>عرض الأثمنة بالدرهم حسب الحجم، دون رسوم مخفية.</p></div>
+<div class="box"><h3>طلب سهل</h3><p>طلبية في دقائق من الهاتف، والأداء عند الاستلام.</p></div>
+<div class="box"><h3>دعم الإنتاج المحلي</h3><p>التعريف بالمنتجات المغربية وتشجيع استهلاكها.</p></div>
+</div></section>
+<section class="about" id="herbs-info"><h2 class="sec">معلومات عامة عن الأعشاب</h2>
+<div class="boxes">
+<div class="box"><h3>الزعتر</h3><p>نبتة عطرية تُستعمل في الطبخ وتُضاف إلى الشاي، وتُجفف وتُطحن لتتبيل الأطباق.</p></div>
+<div class="box"><h3>النعناع</h3><p>أساس الأتاي المغربي، ويُستعمل طازجاً أو مجففاً في المشروبات والسلطات.</p></div>
+<div class="box"><h3>أزير (إكليل الجبل)</h3><p>يُضاف إلى اللحوم والبطاطس، ويُحضّر منه مشروب ساخن.</p></div>
+<div class="box"><h3>الورد البلدي</h3><p>براعم مجففة تدخل في خلطات التوابل مثل رأس الحانوت، ويُستخرج منها ماء الورد.</p></div>
+<div class="box"><h3>الزعفران الحر</h3><p>من أغلى التوابل في العالم، ومنطقة تالوين بإقليم تارودانت معروفة بإنتاجه.</p></div>
+<div class="box"><h3>طريقة الحفظ</h3><p>في علب محكمة الإغلاق، بعيداً عن الرطوبة والحرارة وأشعة الشمس.</p></div>
+</div>
+<p style="color:var(--mute);font-size:.9rem;margin-top:12px">المعلومات أعلاه للتعريف العام فقط، وليست نصيحة طبية.</p></section>
+<section class="about" id="about"><h2 class="sec">من نحن</h2>
+<details open><summary>من نحن</summary><p>«أعشاب بلادي» متجر إلكتروني مغربي (عبر الإنترنت فقط، وليس لنا محل مفتوح للزبناء) متخصص في بيع الأعشاب والنباتات العطرية والتوابل المغربية. نختار المنتجات بعناية ونعبئها ونرسلها إلى زبنائنا في مختلف مدن المغرب.</p></details>
+<details><summary>هدفنا</summary><p>أن يصل المغربي إلى الأعشاب الطبيعية التي اعتاد عليها بسهولة، بأثمنة واضحة وطلب بسيط من الهاتف، ودون الحاجة إلى حساب أو تسجيل.</p></details>
+<details><summary>الطلب والتوصيل والدفع</summary><ul><li>الاسترجاع: يمكن طلب استرجاع الطلبية خلال يوم واحد من استلامها، بالتواصل معنا عبر واتساب.</li><li>تختار المنتجات وتملأ بيانات التوصيل، فتصلنا طلبيتك عبر واتساب.</li><li>نتصل بك لتأكيد الطلبية قبل إرسالها.</li><li>الدفع نقداً عند الاستلام.</li><li>مصاريف التوصيل 30 درهماً، ومجانية ابتداءً من 200 درهم.</li></ul></details>
+<details id="priv"><summary>سياسة الخصوصية</summary><ul><li>نطلب فقط الاسم ورقم الهاتف والمدينة والعنوان، لأنها ضرورية لتوصيل طلبيتك.</li><li>تُرسل هذه المعلومات إلينا عبر واتساب عند الضغط على زر الإرسال، ولا نبيعها ولا نشاركها مع أي جهة أخرى.</li><li>لا نطلب أي معطيات بنكية، لأن الدفع يتم عند الاستلام.</li><li>تُحفظ محتويات السلة داخل متصفحك أنت فقط، ويمكنك مسحها في أي وقت.</li><li>تنبيه: الأعشاب منتجات طبيعية وليست دواءً، ويُنصح باستشارة الطبيب عند الحمل أو المرض المزمن أو تناول الأدوية.</li></ul></details>
+</section>
+<section class="about" id="contact"><h2 class="sec">تواصل معنا</h2>
+<div class="boxes">
+<div class="box"><h3>واتساب</h3><p>للطلب والاستفسار عن المنتجات والتوصيل.</p><p style="margin-top:10px"><a class="btn" href="https://wa.me/212693749034" target="_blank" rel="noopener">راسلنا على واتساب</a></p></div>
+<div class="box"><h3>الهاتف</h3><p>يمكنك الاتصال بنا مباشرة.</p><p style="margin-top:10px"><a class="btn" href="tel:+212693749034" dir="ltr">0693749034</a></p></div>
+</div></section>
+<footer><div class="soc" id="soc"></div><nav class="fl"><a data-view="home" data-cat="الكل">القائمة الرئيسية</a><a data-view="packs">الباقات</a><a data-view="herbs">معلومات عن الأعشاب</a><a data-view="about">من نحن</a><a data-view="goals">أهدافنا</a><a data-view="about" data-open="priv">الخصوصية</a><a data-view="contact">تواصل معنا</a></nav><div>© أعشاب بلادي · تصميم وبرمجة: <span class="dev">A3chabe.ma</span></div></footer>
+
+<div id="ov"><div id="panel">
+<div class="row"><h2 style="margin:0">سلة الطلبات</h2><button class="tab" id="close">إغلاق</button></div>
+<div id="items"></div>
+<div class="total">المجموع: <span id="sum">0</span> درهم <small id="ship" style="font-weight:400;color:var(--mute)"></small></div>
+<div id="form">
+<label>الاسم الكامل</label><input id="nm" autocomplete="name">
+<label>رقم الهاتف</label><input id="ph" inputmode="tel" placeholder="06XXXXXXXX" autocomplete="tel">
+<label>المدينة</label><select id="ct"></select>
+<label>العنوان</label><textarea id="ad" rows="2"></textarea>
+<p id="err" style="color:#c0392b;margin:8px 0 0"></p>
+<button class="btn" id="send" style="width:100%;margin-top:10px">إرسال الطلب عبر واتساب</button>
+<p style="color:var(--mute);font-size:.85rem">الدفع عند الاستلام. سنتصل بك لتأكيد الطلب.</p>
+</div></div></div>
+
+<script>
+// ===== إعدادات المتجر: عدّلها هنا =====
+var WHATSAPP = "212693749034"; // رقمك بصيغة دولية بدون + (مثال: 212612345678)
+var FREE_SHIP = 200, SHIP = 30;  // توصيل مجاني ابتداءً من 200 درهم
+var CITIES = ["الدار البيضاء","الرباط","مراكش","فاس","طنجة","أكادير","مكناس","وجدة","القنيطرة","تطوان","تمارة","سلا","أخرى"];
+var PRODUCTS = [
+ {id:1,n:"زعتر بلدي",c:"أعشاب",e:"🌿",o:[["100 غ",25],["250 غ",55]]},
+ {id:2,n:"نعناع مجفف",c:"أعشاب",e:"🍃",o:[["100 غ",20],["250 غ",45]]},
+ {id:3,n:"إكليل الجبل (أزير)",c:"أعشاب",e:"🌱",o:[["100 غ",22],["250 غ",50]]},
+ {id:4,n:"ورد بلدي مجفف",c:"زهور",e:"🌹",o:[["50 غ",30],["100 غ",55]]},
+ {id:5,n:"زعفران حر (تاليوين)",c:"توابل",e:"🧡",o:[["1 غ",45],["5 غ",200]]},
+ {id:6,n:"شاي الأعشاب المغربي",c:"مشروبات",e:"🍵",o:[["100 غ",35],["250 غ",80]]}
+];
+// ======================================
+var cart=[],cat="الكل";
+try{cart=JSON.parse(localStorage.getItem("cart")||"[]")}catch(e){}
+function $(i){return document.getElementById(i)}
+function save(){try{localStorage.setItem("cart",JSON.stringify(cart))}catch(e){}}
+function tabs(){var cs=["الكل"].concat(PRODUCTS.map(function(p){return p.c}).filter(function(v,i,a){return a.indexOf(v)==i}));
+ $("tabs").innerHTML=cs.map(function(c){return '<button class="tab'+(c==cat?' on':'')+'" data-c="'+c+'">'+c+'</button>'}).join("")}
+function grid(){$("grid").innerHTML=PRODUCTS.filter(function(p){return cat=="الكل"||p.c==cat}).map(function(p){
+ return '<div class="card"><div class="pic" style="background:hsl('+(p.id*37+80)+',28%,30%)">'+p.n.split(' ')[0]+'</div><h3>'+p.n+'</h3><small>'+p.c+'</small><select id="s'+p.id+'">'+
+ p.o.map(function(o,i){return '<option value="'+i+'">'+o[0]+' — '+o[1]+' درهم</option>'}).join("")+
+ '</select><div class="row"><button class="add" data-id="'+p.id+'">أضف للسلة</button></div></div>'}).join("")}
+function total(){return cart.reduce(function(s,i){return s+i.p*i.q},0)}
+function shipCost(t){return t>=FREE_SHIP||t==0?0:SHIP}
+function draw(){var t=total();$("cnt").textContent=cart.reduce(function(s,i){return s+i.q},0);
+ $("items").innerHTML=cart.length?cart.map(function(i,k){return '<div class="item"><div>'+i.n+'<br><small>'+i.f+' · '+i.p+' درهم</small></div><div class="qty"><button data-k="'+k+'" data-d="-1">−</button> '+i.q+' <button data-k="'+k+'" data-d="1">+</button></div></div>'}).join(""):'<p style="color:var(--mute)">السلة فارغة</p>';
+ var sc=shipCost(t);$("sum").textContent=t+sc;$("ship").textContent=t?(sc?"(شامل التوصيل "+SHIP+" د)":"(توصيل مجاني)"):"";
+ $("form").style.display=cart.length?"block":"none";save()}
+document.addEventListener("click",function(e){var t=e.target;
+ if(t.dataset.c){cat=t.dataset.c;tabs();grid()}
+ if(t.classList.contains("add")){var p=PRODUCTS.filter(function(x){return x.id==t.dataset.id})[0],o=p.o[$("s"+p.id).value],ex=cart.filter(function(i){return i.id==p.id&&i.f==o[0]})[0];
+  if(ex)ex.q++;else cart.push({id:p.id,n:p.n,f:o[0],p:o[1],q:1});draw();t.textContent="✓ تمت الإضافة";setTimeout(function(){t.textContent="أضف للسلة"},900)}
+ if(t.dataset.k){var i=cart[t.dataset.k];i.q+=+t.dataset.d;if(i.q<1)cart.splice(t.dataset.k,1);draw()}
+});
+$("open").onclick=function(){$("ov").classList.add("show")};
+$("close").onclick=function(){$("ov").classList.remove("show")};
+$("ov").onclick=function(e){if(e.target==$("ov"))$("ov").classList.remove("show")};
+$("ct").innerHTML=CITIES.map(function(c){return "<option>"+c+"</option>"}).join("");
+function order(kind){var n=$("nm").value.trim(),p=$("ph").value.replace(/\s/g,""),a=$("ad").value.trim();
+ if(n.length<3||!/^(0|\+?212)[5-7]\d{8}$/.test(p)||a.length<5){$("err").textContent="المرجو إدخال الاسم ورقم هاتف مغربي صحيح والعنوان.";return}
+ $("err").textContent="";var t=total(),sc=shipCost(t);
+ var m="طلب جديد من متجر أعشاب بلادي 🌿\n\n"+cart.map(function(i){return "• "+i.n+" ("+i.f+") × "+i.q+" = "+i.p*i.q+" د"}).join("\n")+
+ "\n\nالتوصيل: "+sc+" د\nالمجموع: "+(t+sc)+" درهم (الدفع عند الاستلام)\n\nالاسم: "+n+"\nالهاتف: "+p+"\nالمدينة: "+$("ct").value+"\nالعنوان: "+a;
+ window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(m),"_blank")}
+$("send").onclick=function(){order("wa")};
+document.querySelectorAll("#menu [data-cat]").forEach(function(a){a.addEventListener("click",function(){cat=a.dataset.cat;tabs();grid()})});
+tabs();grid();draw();
+</script>
+<div class="ovl" id="pvo"><div class="pnl" id="pvbody"></div></div>
+<div class="ovl" id="ado"><div class="pnl" id="admbody"></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ===== إعدادات Supabase =====
+var SB_URL="https://rqgrbhwpxfdpfzjumrpw.supabase.co";
+var SB_KEY="sb_publishable_MaSer_Qf6JzslYcZwrh1AQ_blJsE9iB"; // مفتاح عام، آمن في الواجهة
+var BUCKET="product-images";
+var sb=null,SOC={},IS_ADMIN=false,FROM_DB=false,pend="",pendBlob=null;
+try{sb=supabase.createClient(SB_URL,SB_KEY)}catch(e){}
+
+// ===== المنتجات الافتراضية (تُعرض فقط إذا كانت قاعدة البيانات فارغة) =====
+PRODUCTS.forEach(function(p){if(p.id==1||p.id==4)p.c="شتاء"});
+[["حب العزيز","نساء",30,65],["بتي كولا","نساء",35,75],["بذور الإكبي","نساء",25,55],["البكبوكة","نساء",25,55],
+ ["دميانة","قوة",30,65],["شيلاجيت","قوة",80,150,"50 غ","100 غ"],["أشواغاندا","قوة",40,90],["حبة البركة (الحبة السوداء)","قوة",20,45],["الماكا","قوة",50,110],
+ ["خدنجال","شتاء",20,45],["قرفة سيلانية","شتاء",45,100],["فليو","شتاء",20,45],["كامون صوفي","شتاء",20,45],["قرنفل","شتاء",30,65],["خزامة","شتاء",25,55],["بضيانة","شتاء",20,45]
+].forEach(function(r,i){PRODUCTS.push({id:7+i,n:r[0],c:r[1],d:"منتج عشبي تقليدي يُباع مجففاً.",i:"التخزين: في علبة محكمة الإغلاق بعيداً عن الرطوبة والحرارة.",o:[[r[4]||"100 غ",r[2]],[r[5]||"250 غ",r[3]]]})});
+var DEFAULTS=JSON.parse(JSON.stringify(PRODUCTS));
+var PACKS=[{n:"باقة النساء",d:"مجموعة من أعشاب النساء المطلوبة.",ids:[7,8,9,10]},{n:"باقة القوة",d:"مجموعة من أعشاب القوة والنشاط.",ids:[11,12,13,14,15]},{n:"باقة الشتاء",d:"أعشاب وتوابل الشتاء والبرد.",ids:[16,17,1,18,19,4,20,21,22]}];
+// الباقات تعتمد على أسماء المنتجات حتى تعمل مع معرّفات قاعدة البيانات
+PACKS.forEach(function(k){k.names=k.ids.map(function(id){var p=DEFAULTS.filter(function(x){return x.id==id})[0];return p&&p.n}).filter(Boolean)});
+
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function mapRow(r){return{id:r.id,n:r.name,c:r.category,d:r.description||"",i:r.info||"",o:r.options,img:r.img_url||""}}
+function refresh(){if(cat!="الكل"&&!PRODUCTS.some(function(p){return p.c==cat}))cat="الكل";tabs();grid();packs()}
+
+async function loadProducts(){
+ if(!sb)return;
+ try{var r=await sb.from("products").select("*").order("id");
+  if(r.error)throw r.error;
+  if(r.data&&r.data.length){PRODUCTS=r.data.map(mapRow);FROM_DB=true}
+  else{PRODUCTS=JSON.parse(JSON.stringify(DEFAULTS));FROM_DB=false}
+ }catch(e){console.warn("products load failed",e)}
+ refresh()}
+async function loadSocial(){
+ if(!sb)return;
+ try{var r=await sb.from("settings").select("value").eq("key","social").maybeSingle();
+  if(r.data&&r.data.value)SOC=r.data.value}catch(e){}
+ socials()}
+
+function grid(){$("grid").innerHTML=PRODUCTS.filter(function(p){return cat=="الكل"||p.c==cat}).map(function(p){return '<div class="card"><div class="pic" data-v="'+p.id+'" style="'+(p.img?'padding:0':'background:hsl('+(p.id*37+80)+',28%,30%)')+'">'+(p.img?'<img src="'+esc(p.img)+'" alt="'+esc(p.n)+'">':esc(p.n.split(" ")[0]))+'</div><h3 data-v="'+p.id+'" style="cursor:pointer">'+esc(p.n)+'</h3><small>'+esc(p.c)+'</small><select id="s'+p.id+'">'+p.o.map(function(o,i){return '<option value="'+i+'">'+esc(o[0])+' — '+o[1]+' درهم</option>'}).join("")+'</select><div class="row"><button class="add" data-id="'+p.id+'">أضف للسلة</button><button class="tab" data-v="'+p.id+'">التفاصيل</button></div></div>'}).join("")}
+
+function openP(id){var p=PRODUCTS.filter(function(x){return x.id==id})[0];if(!p)return;
+ $("pvbody").innerHTML='<button class="tab" data-x="pvo">إغلاق</button>'+(p.img?'<img class="big" src="'+esc(p.img)+'" alt="'+esc(p.n)+'">':'<div class="pic big" style="background:hsl('+(p.id*37+80)+',28%,30%);font-size:2.4rem">'+esc(p.n)+'</div>')+'<h2 style="margin:4px 0">'+esc(p.n)+'</h2><small>'+esc(p.c)+'</small>'+(p.d?'<p>'+esc(p.d)+'</p>':'')+(p.i?'<ul>'+p.i.split("\n").filter(Boolean).map(function(l){return '<li>'+esc(l)+'</li>'}).join("")+'</ul>':'')+'<select id="ps">'+p.o.map(function(o,i){return '<option value="'+i+'">'+esc(o[0])+' — '+o[1]+' درهم</option>'}).join("")+'</select><button class="btn" style="width:100%;margin-top:10px" data-pa="'+p.id+'">أضف للسلة</button>';
+ $("pvo").classList.add("show")}
+
+// ===== دخول المشرف =====
+function loginRender(m){
+ $("admbody").innerHTML='<div class="row"><h2 style="margin:0">دخول المشرف</h2><button class="tab" data-x="ado">إغلاق</button></div><label>البريد الإلكتروني</label><input id="lem" type="email" dir="ltr" autocomplete="username"><label>كلمة المرور</label><input id="lpw" type="password" dir="ltr" autocomplete="current-password"><button class="btn" data-login="1" style="width:100%;margin-top:12px">دخول</button><p id="am" style="color:#c0392b">'+esc(m||"")+'</p>';
+ $("ado").classList.add("show")}
+async function checkAdmin(){
+ IS_ADMIN=false;
+ try{var s=await sb.auth.getSession(),u=s.data&&s.data.session&&s.data.session.user;
+  if(u){var r=await sb.from("admins").select("user_id").eq("user_id",u.id).maybeSingle();IS_ADMIN=!!(r.data)}}catch(e){}
+ var b=$("admbtn");
+ if(IS_ADMIN&&!b){b=document.createElement("button");b.id="admbtn";b.className="cartbtn";b.textContent="إدارة المتجر";b.onclick=function(){admRender(null);$("ado").classList.add("show")};$("open").before(b)}
+ else if(!IS_ADMIN&&b)b.remove()}
+
+// ===== لوحة الإدارة =====
+function admRender(eid,m){
+ var f=eid==null?{}:(PRODUCTS.filter(function(x){return x.id==eid})[0]||{});pend=f.img||"";pendBlob=null;
+ var h='<div class="row"><h2 style="margin:0">إدارة المنتجات</h2><button class="tab" data-x="ado">إغلاق</button></div>';
+ if(!FROM_DB){
+  h+='<p style="color:var(--mute)">قاعدة البيانات فارغة، والمعروض حالياً هو المنتجات الافتراضية. اضغط الزر لنسخها إلى قاعدة البيانات ثم عدّلها كما تشاء.</p><button class="btn" data-imp="1" style="width:100%">استيراد المنتجات الحالية إلى قاعدة البيانات</button>';
+ }else{
+  h+=PRODUCTS.map(function(p){return '<div class="item"><span>'+esc(p.n)+'</span><span><button class="tab" data-ed="'+p.id+'">تعديل</button> <button class="tab" data-del="'+p.id+'">حذف</button></span></div>'}).join("")+
+  '<h3>'+(eid==null?'منتج جديد':'تعديل المنتج')+'</h3><label>الاسم</label><input id="fn" value="'+esc(f.n)+'"><label>الفئة (مثل: أعشاب، زهور، توابل)</label><input id="fc" value="'+esc(f.c||"أعشاب")+'"><label>وصف المنتج</label><textarea id="fd" rows="3">'+esc(f.d)+'</textarea><label>معلومات إضافية (كل معلومة في سطر)</label><textarea id="fi" rows="3">'+esc(f.i)+'</textarea><label>الأحجام والأسعار (سطر لكل حجم، مثال: 100 غ=25)</label><textarea id="fo" rows="3">'+esc((f.o||[["100 غ",20]]).map(function(o){return o[0]+"="+o[1]}).join("\n"))+'</textarea><label>صورة المنتج</label><input type="file" id="ff" accept="image/*"><img id="fp" class="big" '+(f.img?'src="'+esc(f.img)+'"':'hidden')+'>'+
+  '<button class="btn" data-sv="'+(eid==null?'':eid)+'" style="width:100%">حفظ المنتج</button>'+(eid!=null?'<button class="tab" data-new="1" style="width:100%;margin-top:8px">إلغاء التعديل / منتج جديد</button>':'');
+ }
+ h+='<hr><h3>روابط الحسابات</h3><label>فيسبوك</label><input id="sfb" dir="ltr" placeholder="https://" value="'+esc(SOC.fb)+'"><label>إنستغرام</label><input id="sig" dir="ltr" placeholder="https://" value="'+esc(SOC.ig)+'"><label>تيك توك</label><input id="stt" dir="ltr" placeholder="https://" value="'+esc(SOC.tt)+'"><button class="btn" data-ss="1" style="width:100%;margin-top:8px">حفظ الروابط</button><hr><button class="tab" data-lo="1" style="width:100%">تسجيل الخروج</button><p id="am" style="color:var(--mute)">'+esc(m||"التغييرات تُحفظ مباشرة وتظهر للزبائن فوراً.")+'</p>';
+ $("admbody").innerHTML=h}
+
+document.addEventListener("click",async function(e){
+ var t=e.target,v=t.closest&&t.closest("[data-v]");
+ if(v){openP(v.dataset.v);return}
+ if(t.classList.contains("ovl"))t.classList.remove("show");
+ if(t.dataset.x)$(t.dataset.x).classList.remove("show");
+ if(t.dataset.pa){var p=PRODUCTS.filter(function(x){return x.id==t.dataset.pa})[0],o=p.o[$("ps").value],ex=cart.filter(function(i){return i.id==p.id&&i.f==o[0]})[0];if(ex)ex.q++;else cart.push({id:p.id,n:p.n,f:o[0],p:o[1],q:1});draw();$("pvo").classList.remove("show");$("ov").classList.add("show")}
+ if(t.id=="admin-login"){if(IS_ADMIN){admRender(null);$("ado").classList.add("show")}else loginRender()}
+ if(t.dataset.login){
+  var em=$("lem").value.trim(),pw=$("lpw").value;
+  if(!em||!pw){$("am").textContent="أدخل البريد وكلمة المرور.";return}
+  $("am").style.color="var(--mute)";$("am").textContent="جاري الدخول...";
+  try{var r=await sb.auth.signInWithPassword({email:em,password:pw});
+   if(r.error){$("am").style.color="#c0392b";$("am").textContent="البريد أو كلمة المرور غير صحيحة.";return}
+   await checkAdmin();
+   if(IS_ADMIN)admRender(null);
+   else{await sb.auth.signOut();$("am").style.color="#c0392b";$("am").textContent="هذا الحساب ليس مشرفاً."}
+  }catch(x){$("am").style.color="#c0392b";$("am").textContent="تعذر الاتصال: "+((x&&x.message)||x)}
+ }
+ if(t.dataset.lo){await sb.auth.signOut();IS_ADMIN=false;var ab=$("admbtn");if(ab)ab.remove();$("ado").classList.remove("show")}
+ if(t.dataset.ed)admRender(+t.dataset.ed);
+ if(t.dataset.new)admRender(null);
+ if(t.dataset.imp){
+  $("am").textContent="جاري الاستيراد...";
+  try{var rows=DEFAULTS.map(function(p){return{name:p.n,category:p.c,description:p.d||"",info:p.i||"",options:p.o,img_url:null}});
+   var r=await sb.from("products").insert(rows).select();
+   if(r.error)throw r.error;
+   await loadProducts();admRender(null,"تم استيراد "+rows.length+" منتجاً.")
+  }catch(x){$("am").textContent="تعذر الاستيراد: "+((x&&x.message)||x)}
+ }
+ if(t.dataset.del){
+  if(t.dataset.arm!=="1"){t.dataset.arm="1";t.textContent="تأكيد الحذف";return}
+  try{var r=await sb.from("products").delete().eq("id",+t.dataset.del).select();
+   if(r.error)throw r.error;
+   if(!r.data||!r.data.length)throw new Error("لا تملك صلاحية الحذف");
+   await loadProducts();admRender(null,"تم الحذف.")
+  }catch(x){$("am").textContent="تعذر الحذف: "+((x&&x.message)||x)}
+ }
+ if(t.dataset.sv!==undefined){
+  var n=$("fn").value.trim(),os=$("fo").value.split("\n").map(function(l){var a=l.split("=");return[(a[0]||"").trim(),parseFloat(a[1])]}).filter(function(a){return a[0]});
+  if(!n||!os.length||os.some(function(a){return !(a[1]>0)})){$("am").textContent="أدخل الاسم وحجماً واحداً على الأقل بصيغة «100 غ=25».";return}
+  t.disabled=true;$("am").textContent="جاري الحفظ...";
+  try{
+   var url=pend||"";
+   if(pendBlob){
+    var path=Date.now()+"-"+Math.random().toString(36).slice(2,7)+".jpg";
+    var up=await sb.storage.from(BUCKET).upload(path,pendBlob,{contentType:"image/jpeg",cacheControl:"31536000"});
+    if(up.error)throw up.error;
+    url=sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+   }
+   var row={name:n,category:$("fc").value.trim()||"أعشاب",description:$("fd").value.trim(),info:$("fi").value.trim(),options:os,img_url:url||null},res;
+   if(t.dataset.sv)res=await sb.from("products").update(row).eq("id",+t.dataset.sv).select();
+   else res=await sb.from("products").insert(row).select();
+   if(res.error)throw res.error;
+   if(!res.data||!res.data.length)throw new Error("لم يُحفظ التغيير، تحقق من صلاحيات المشرف");
+   await loadProducts();admRender(null,"تم حفظ «"+n+"» وظهر للزبائن.")
+  }catch(x){t.disabled=false;$("am").textContent="تعذر الحفظ: "+((x&&x.message)||x)}
+ }
+ if(t.dataset.ss){
+  var S={fb:$("sfb").value.trim(),ig:$("sig").value.trim(),tt:$("stt").value.trim()};
+  try{var r=await sb.from("settings").upsert({key:"social",value:S});
+   if(r.error)throw r.error;
+   SOC=S;socials();$("am").textContent="تم حفظ الروابط (تُقبل فقط روابط تبدأ بـ https://)."
+  }catch(x){$("am").textContent="تعذر حفظ الروابط: "+((x&&x.message)||x)}
+ }
+});
+
+// معالجة الصورة: تصغير ثم رفع عند الحفظ
+document.addEventListener("change",function(e){if(e.target.id!="ff")return;var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext("2d").drawImage(im,0,0,c.width,c.height);pend=c.toDataURL("image/jpeg",.82);c.toBlob(function(b){pendBlob=b},"image/jpeg",.82);$("fp").src=pend;$("fp").hidden=false};im.src=r.result};r.readAsDataURL(f)});
+
+// ===== العرض =====
+var VW={home:[".hero","#shop"],packs:["#packs"],herbs:["#herbs-info"],about:["#about"],goals:["#goals"],contact:["#contact"]};
+function showView(v){Object.keys(VW).forEach(function(k){VW[k].forEach(function(s){var e=document.querySelector(s);if(e)e.classList.toggle("hid",k!=v)})});document.querySelectorAll("#menu a").forEach(function(a){a.classList.toggle("on",a.dataset.view==v)});window.scrollTo(0,0)}
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("[data-view]");if(!a)return;e.preventDefault();if(a.dataset.cat){cat=a.dataset.cat;tabs();grid()}showView(a.dataset.view);if(a.dataset.open){var d=document.getElementById(a.dataset.open);if(d)d.open=true}});
+
+function packItems(k){return k.names.map(function(n){return PRODUCTS.filter(function(p){return p.n==n})[0]}).filter(Boolean)}
+function packs(){$("pklist").innerHTML=PACKS.map(function(k,i){var it=packItems(k);if(!it.length)return "";var t=it.reduce(function(s,p){return s+p.o[0][1]},0);return '<div class="box"><h3>'+esc(k.n)+'</h3><p>'+esc(k.d)+'</p><ul>'+it.map(function(p){return '<li>'+esc(p.n)+' ('+esc(p.o[0][0])+') — '+p.o[0][1]+' درهم</li>'}).join("")+'</ul><p class="price" style="margin:8px 0;color:var(--green)">المجموع: '+t+' درهم</p><button class="btn" data-pk="'+i+'">أضف الباقة للسلة</button></div>'}).join("")}
+document.addEventListener("click",function(e){var b=e.target.dataset&&e.target.dataset.pk;if(b==null)return;packItems(PACKS[b]).forEach(function(p){var o=p.o[0],ex=cart.filter(function(i){return i.id==p.id&&i.f==o[0]})[0];if(ex)ex.q++;else cart.push({id:p.id,n:p.n,f:o[0],p:o[1],q:1})});draw();$("ov").classList.add("show")});
+function socials(){var L=[["fb","فيسبوك"],["ig","إنستغرام"],["tt","تيك توك"]];$("soc").innerHTML=L.filter(function(x){return /^https:\/\//.test(SOC[x[0]]||"")}).map(function(x){return '<a href="'+esc(SOC[x[0]])+'" target="_blank" rel="noopener">'+x[1]+'</a>'}).join("")}
+
+// رابط دخول المشرف في أسفل الصفحة
+(function(){var ft=document.querySelector("footer"),a=document.createElement("a");a.id="admin-login";a.textContent="دخول المشرف";a.style.cssText="display:block;margin-top:10px;color:#d9e6cf;opacity:.55;font-size:.8rem;cursor:pointer";ft.appendChild(a)})();
+
+showView("home");
+tabs();grid();packs();draw();socials();
+loadProducts();loadSocial();
+if(sb){checkAdmin();sb.auth.onAuthStateChange(function(){setTimeout(checkAdmin,0)})}
+</script>
+</body>
+</html>
